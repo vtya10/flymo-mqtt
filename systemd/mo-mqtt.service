@@ -1,0 +1,16 @@
+[Unit]
+Description=Mo Flymo BLE to MQTT Bridge
+After=network-online.target bluetooth.target
+Wants=network-online.target bluetooth.target
+
+[Service]
+Type=simple
+User=baz
+WorkingDirectory=/home/baz/github/flymo-mqtt
+EnvironmentFile=/home/baz/.config/mo-mqtt.env
+ExecStart=/home/baz/automower-ble-venv/bin/python -u /home/baz/github/flymo-mqtt/mo_mqtt.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
